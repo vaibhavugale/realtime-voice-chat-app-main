@@ -1,0 +1,9 @@
+.NavBar{
+    padding: 20px 0;
+    display: flex;
+ }
+ .Link{
+    display: flex;
+    justify-content: space-between;
+    gap:10px
+ }

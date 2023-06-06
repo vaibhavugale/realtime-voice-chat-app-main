@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+.description {
+  
+  font-size: 20px;
+  line-height: 20px;
+  color: #c4c5c5;
+
+  text-align: center;
+}
+.button{
+    margin-top: 20px;
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.button a{
+    color: #447be2;
+    text-decoration: none;
+    font-size: 10px;
+}

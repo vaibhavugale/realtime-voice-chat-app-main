@@ -1,0 +1,17 @@
+.labelInput{
+    display: none;
+  
+  }
+  .label{
+    color: rgba(41, 122, 168, 0.644);
+    cursor: pointer;
+  }
+  .avatarImg{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50px;
+    border: 6px solid #3a9ae9;
+  }
+   
+  

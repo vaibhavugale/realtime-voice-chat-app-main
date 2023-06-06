@@ -1,0 +1,69 @@
+import React, { useEffect, useState } from "react";
+import Button from "../../../components/shared/Button/Button";
+import CardContainer from "../../../components/shared/card/CardContainer";
+import style from "./StepAvatar.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setAvatar } from "../../../Store/Slices/activation-slice";
+import { activate } from "../../../http";
+import { setAuth } from "../../../Store/Slices/user-slices";
+import { useLoadingRefresh } from "../../../Hooks/useLoadingRefresh";
+const StepAvatar = ({ onNext }) => {
+  const [ loading,setLoading] = useState(false)
+  const { name, avatar } = useSelector((state) => state.activationSlice);
+  const [image, setImage] = useState("/images/icon/avatarimage.png");
+  const dispatch = useDispatch();
+
+ 
+
+ async function captureImage(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onloadend = function () {
+      setImage(reader.result);
+      dispatch(setAvatar(reader.result));
+    };
+  }
+  async function submit() {
+    setLoading(true)
+    try {
+      const { data } = await activate({ name, avatar });
+      if (data.auth) {
+          dispatch(setAuth(data));
+      
+      }
+      setLoading(false)
+      console.log(data);
+  } catch (err) {
+    setLoading(false)
+      console.log(err);
+  } finally {
+     setLoading(false)
+  }
+  }
+  return (
+    <div className={`Centre container`}>
+      <CardContainer img={"/images/icon/lockEmoji.png"} title={`Okay, ${name}`}>
+        <p>How’s this photo?</p>
+        <div>
+          <img className={style.avatarImg} src={image} alt="avatar" />
+          <label className={style.label} htmlFor="avatarImg">
+            <p>choose different photo</p>
+
+            <input
+              onChange={captureImage}
+              className={style.labelInput}
+              type="file"
+              id="avatarImg"
+            />
+          </label>
+        </div>
+
+        <Button buttonText={"Next"} onclick={submit}></Button>
+      </CardContainer>
+    </div>
+  );
+};
+
+export default StepAvatar;

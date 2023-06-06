@@ -1,0 +1,19 @@
+.button {
+  cursor: pointer;
+  background: #007ff3;
+  border-radius: 71px;
+  border: none;
+  padding: 10px 30px;
+  font-family: 'Itim', cursive;
+  display: flex;
+  color: #fff;
+  gap: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapperButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
