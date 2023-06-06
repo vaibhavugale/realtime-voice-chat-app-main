@@ -4,6 +4,25 @@
  }
  .Link{
     display: flex;
+    width: 100%;
     justify-content: space-between;
     gap:10px
+ }
+ .rightNav{
+   display: flex;
+   /* justify-content: baseline; */
+   align-items: center;
+   gap:10px
+ }
+ .rightNav img{
+   border-radius: 50%;
+   overflow: hidden;
+   border:  3px solid #0077ff;
+   
+
+ }
+ .logoutButton{
+ 
+  cursor: pointer;
+
  }

@@ -141,7 +141,7 @@ class AuthController{
 
     }
     // add in cookies
-    res.cookie('refreshtoken',refreshToken,{
+    res.cookie('refreshToken',refreshToken,{
       maxAge:1000*60*60*24*30,
       httpOnly:true,
     })
@@ -171,12 +171,12 @@ class AuthController{
    async  logout (req,res){
     try{
        //refresh token
-     const {refreshtoken} = req.cookies;
+     const {refreshToken} = req.cookies;
      // delete token 
-     await tokenService.deleteToken(refreshtoken)
+     await tokenService.deleteToken(refreshToken)
      // delete cookies
-     res.clearCookie('refreshtoken')
-     res.clearCookie('accesstoken')
+     res.clearCookie('refreshToken')
+     res.clearCookie('accessToken')
      res.json({
       user:null,
       isAuth:false,

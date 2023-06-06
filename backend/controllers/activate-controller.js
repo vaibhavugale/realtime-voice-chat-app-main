@@ -11,12 +11,16 @@ class ActivateController{
        if(!name || !avatar){
         res.status(400).json({message:'All field required'})
        }
-     
-        const imagePath = `${Date.now()}-${Math.round(
-            Math.random() * 1e9
-              )}.jpeg`;
-            const buffer = Buffer.from(avatar.replace(/^data:image\/jpeg;base64,/,' '),'base64');
-    
+      // Image Base64
+      const buffer = Buffer.from(
+        avatar.replace(/^data:image\/(png|jpg|jpeg);base64,/, ''),
+        'base64'
+    );
+    const imagePath = `${Date.now()}-${Math.round(
+        Math.random() * 1e9
+    )}.png`;
+    // 32478362874-3242342342343432.png
+
      
 
         // try{

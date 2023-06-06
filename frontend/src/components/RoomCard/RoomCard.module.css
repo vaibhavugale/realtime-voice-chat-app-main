@@ -1,0 +1,14 @@
+.roomCardContainer {
+    height: 190px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #1D1D1D;
+}
+.totalPeople{
+    display: flex;
+    gap: 5px;
+    justify-content: end;
+    align-items: center;
+}

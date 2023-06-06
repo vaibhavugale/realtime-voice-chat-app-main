@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "../../../components/shared/Button/Button";
 import CardContainer from "../../../components/shared/card/CardContainer";
 import style from "./StepAvatar.module.css";
@@ -6,9 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAvatar } from "../../../Store/Slices/activation-slice";
 import { activate } from "../../../http";
 import { setAuth } from "../../../Store/Slices/user-slices";
-import { useLoadingRefresh } from "../../../Hooks/useLoadingRefresh";
 const StepAvatar = ({ onNext }) => {
-  const [ loading,setLoading] = useState(false)
   const { name, avatar } = useSelector((state) => state.activationSlice);
   const [image, setImage] = useState("/images/icon/avatarimage.png");
   const dispatch = useDispatch();
@@ -26,20 +24,17 @@ const StepAvatar = ({ onNext }) => {
     };
   }
   async function submit() {
-    setLoading(true)
+   
     try {
       const { data } = await activate({ name, avatar });
       if (data.auth) {
           dispatch(setAuth(data));
       
       }
-      setLoading(false)
-      console.log(data);
+     
   } catch (err) {
-    setLoading(false)
+    
       console.log(err);
-  } finally {
-     setLoading(false)
   }
   }
   return (

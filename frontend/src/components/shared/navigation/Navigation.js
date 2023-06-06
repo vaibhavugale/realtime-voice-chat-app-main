@@ -1,36 +1,34 @@
 import React from "react";
 import style from "./Navigation.module.css";
 import { Link } from "react-router-dom";
-
+import { HiOutlineLogout } from "react-icons/hi";
 import { logout } from "../../../http";
 import { setAuth } from "../../../Store/Slices/user-slices";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 
 const Navigation = () => {
   const dispatch = useDispatch();
- async  function handelLogout(){
+  const { isAuth , user} = useSelector((state) => state.authSlice);
   
-    try{
-      const {data} = await logout();
+  async function handelLogout() {
+    try {
+      const { data } = await logout();
 
-      dispatch(setAuth(data))
-    }catch(err){
-      console.log(err)
+      dispatch(setAuth(data));
+    } catch (err) {
+      console.log(err);
     }
   }
   // inline css
   const linkStyle = {
-    color:"#fff",
-    textDecoration:"none",
-    fontSize:"22px",
-    display:"flex",
-    alignItems:'centre ',
-    gap:"5px",
-    
+    color: "#fff",
+    textDecoration: "none",
+    fontSize: "22px",
+    display: "flex",
+    alignItems: "centre ",
+    gap: "5px",
+  };
 
-
-  }
   return (
     <nav className={`${style.NavBar} container`}>
       <div className={style.Link}>
@@ -46,7 +44,17 @@ const Navigation = () => {
           <img src="/images/icon/vectorhandshakeicon.png" alt="" />
           <span>THEVOICE</span>
         </Link>
-       <button onClick={handelLogout}>Log Out</button>
+        {isAuth && (
+          <div className={style.rightNav}>
+            <h3>{user.name}</h3>
+            <Link to={"/"}>
+              <img src={user.avatar} width="40" height="40"  />
+            </Link>
+            <abbr onClick={handelLogout} className={style.logoutButton}>
+              <HiOutlineLogout title="Logout" size={30} />
+            </abbr>
+          </div>
+        )}
       </div>
     </nav>
   );

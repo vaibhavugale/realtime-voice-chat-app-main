@@ -17,7 +17,7 @@ export function useLoadingRefresh(){
             
            
         }catch(er){
-            setLoading(true)
+            setLoading(false)
             console.log(er)
             console.log("Error while in Loading hook")
             
@@ -26,5 +26,5 @@ export function useLoadingRefresh(){
         }})();
 
     },[])
-  return {loading,setLoading}
+  return {loading}
 }

@@ -1,0 +1,61 @@
+.roomsHeader {
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(30px);
+  width: 100%;
+}
+.RoomContainer {
+  display: flex;
+  flex-direction: column;
+
+}
+.roomList{
+    display: grid;
+    grid-template-columns: repeat(4,1fr) ;
+    gap: 30px;
+    margin-top: 50px;
+    transform: translateY(50px);
+}
+.roomButton {
+  border-radius: 50px;
+  padding: 10px 20px;
+  background-color: #20bd5f;
+  border: none;
+  color: #fff;
+  font-family: "Itim", cursive;
+  font-size: 18px;
+  transition: background-color 0.5s;
+}
+.roomButton:hover {
+  cursor: pointer;
+  background-color: #f51c0d;
+}
+.blueLine {
+  margin-top: 10px;
+  background: #0077ff;
+  width: 50px;
+  height: 2px;
+}
+.leftSection {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: baseline;
+}
+.inputDiv {
+  background: #262626;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  padding: 7px 10px;
+  border-radius: 5px;
+}
+.inputDiv input {
+  color: #fff;
+  background: transparent;
+  border: none;
+}
+.inputDiv input:focus {
+  outline: none;
+}
