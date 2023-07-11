@@ -6,7 +6,7 @@ const Input = (props) => {
   
   return (
     <div className={style.InputWrapper}>
-     {console.log(props)}
+     {/* {console.log(props)} */}
    
       {/* {children} */}
       {/* <input

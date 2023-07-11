@@ -5,6 +5,7 @@
   width: 100%;
 }
 .RoomContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
 

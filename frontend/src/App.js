@@ -5,16 +5,17 @@ import { useSelector } from "react-redux";
 import Navigation from "./components/shared/navigation/Navigation";
 // import Register from "./pages/register/Register"
 // import Login from "./pages/Login/Login"
-import Room from "./pages/Rooms/Room";
+import Rooms from "./pages/Rooms/Rooms";
 import Authenticate from "./pages/authenticate/Authenticate";
 import Activate from "./pages/Activate/Activate";
 import { useState } from "react";
 import { useLoadingRefresh } from "./Hooks/useLoadingRefresh";
+import Room from "./pages/Room/Room";
 
 function App() {
   const { user, isAuth } = useSelector((state) => state.authSlice);
   // console.log("app.",user,isAuth)
-  const {loading} = useLoadingRefresh();
+  const { loading } = useLoadingRefresh();
 
   return loading ? (
     <div>Loading.....</div>
@@ -51,6 +52,14 @@ function App() {
           path="/rooms"
           element={
             <Protected user={user} isAuth={isAuth}>
+              <Rooms />
+            </Protected>
+          }
+        ></Route>
+        <Route
+          path="/rooms/:id"
+          element={
+            <Protected user={user} isAuth={isAuth}>
               <Room />
             </Protected>
           }
@@ -64,7 +73,7 @@ function App() {
 
 const GuestRoute = ({ children, user, isAuth }) => {
   const location = useLocation();
-  console.log("Guest");
+  // console.log("Guest");
 
   console.log(isAuth);
   return isAuth ? (
@@ -75,7 +84,7 @@ const GuestRoute = ({ children, user, isAuth }) => {
 };
 const SemiProtected = ({ children, user, isAuth }) => {
   const location = useLocation();
-  console.log("semi");
+  // console.log("semi");
 
   return !isAuth ? (
     <Navigate to="/" state={{ from: location }} replace />
@@ -87,7 +96,7 @@ const SemiProtected = ({ children, user, isAuth }) => {
 };
 const Protected = ({ children, user, isAuth }) => {
   const location = useLocation();
-  console.log("pro");
+  // console.log("pro");
 
   return !isAuth ? (
     <Navigate to="/" state={{ from: location }} replace />

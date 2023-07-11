@@ -23,13 +23,13 @@ class ActivateController{
 
      
 
-        // try{
-        //     const jimRes = await jimp.read(buffer)
-        //     jimRes.resize(150,jimp.AUTO).write(path.resolve(__dirname,`../storage/${imagePath}`))
-        // }catch(err){
-        //     console.log(err)
-        //     res.status(500).json({ message: 'Could not process the image' });
-        // }
+        try{
+            const jimRes = await jimp.read(buffer)
+            jimRes.resize(150,jimp.AUTO).write(path.resolve(__dirname , `../storage/${imagePath}`))
+        }catch(err){
+            console.log("Error while writing files",err)
+            res.status(500).json({ message: 'Could not process the image' });
+        }
         const userId = req.user._id
         try {
             const user = await userService.findUser({ _id: userId });
@@ -38,7 +38,7 @@ class ActivateController{
             }
             user.activated = true;
             user.name = name;
-            user.avatar = null //`/storage/${imagePath}`;
+            user.avatar = `/storage/${imagePath}`;
             user.save();
             res.json({ user: new UserDto(user), auth: true });
         } catch (err) {

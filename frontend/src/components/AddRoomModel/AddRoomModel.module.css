@@ -1,0 +1,65 @@
+.roomModel{
+ position: absolute;
+ z-index: 10;
+ width: 100vw;
+ height: 100vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background-color: rgba(240, 233, 225, 0.326);
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ 
+
+}
+/* .inputDiv {
+    background: #262626;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 5px;
+  }
+  .inputDiv input {
+    color: #fff;
+    background: transparent;
+    border: none;
+  } */
+  .modelContain{
+    background-color: #1d1d1d;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 400px;
+    height: 450px;
+    border-radius: 5px;
+    padding: 30px 20px;
+  } 
+  .section2{
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .section2Contain{
+    display: flex;
+    justify-content: space-around;
+
+  }
+  .cancelButton{
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    cursor: pointer;
+   
+    }
+    .active{
+      background-color: #b6adad;
+    }
+    .roomType{
+     cursor: pointer;
+      }

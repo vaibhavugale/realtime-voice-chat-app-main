@@ -1,30 +1,44 @@
-import React from 'react'
-import styles from "./RoomCard.module.css"
-import {BsFillPeopleFill} from "react-icons/bs"
+import React from "react";
+import styles from "./RoomCard.module.css";
+import { BsFillPeopleFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
-const RoomCard = ({room}) => {
+const RoomCard = ({ room }) => {
+  const navigate = useNavigate();
+  
+  
+  const topicCss = {
+    // color:" #34a741",
+    
+  }
   return (
-    <div className={styles.roomCardContainer}>
-    <h3>{room.topic}</h3>
-    <div>
-        {
-            room.speakers.map((speaker)=>{
-                return <p>
+    <div
+      className={styles.roomCardContainer}
+      onClick={() => navigate(`/rooms/${room?.id}`)}
+    >
+      <h1><span style={topicCss}>{room.topic}</span></h1>
+      <div className={styles.roomSpeakersInfo}>
+        <div className={styles.avatarDiv}>
+          {room.speakers.map(
+            (speaker, index) =>
+              index <= 2 && <img key={speaker?.id} src={speaker?.avatar} />
+          )}
+         
+        </div>
+        <div>
+          {room.speakers.map(
+            (speaker, index) => index <= 2 && <p key={index}>{speaker.name}</p>
+          )}
+         
+        </div>
+      </div>
 
-                {speaker.name}
-                     
-                </p>
-            })
-        }
-    </div>
-
-    <div className={styles.totalPeople}>
-        <BsFillPeopleFill/>
+      <div className={styles.totalPeople}>
+        <BsFillPeopleFill />
         {room.totalPeople}
+      </div>
     </div>
+  );
+};
 
-    </div>
-  )
-}
-
-export default RoomCard
+export default RoomCard;
