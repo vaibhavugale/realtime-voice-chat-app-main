@@ -44,7 +44,7 @@ api.interceptors.response.use(
       originalRequest.isRetry = true;
       try {
         const response = await axios.get(
-          "http://localhost:5500/api/refresh",
+          "/api/refresh",
           {
             withCredentials: true,
           }
