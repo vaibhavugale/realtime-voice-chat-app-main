@@ -17,7 +17,7 @@ app.use(cookiesParser());
 
 const corsOption = {
   credentials: true,
-  origin: ["http://localhost:3000"],
+  origin: ["https://realtime-voice-chat-app.vercel.app"],
 };
 app.use(cors(corsOption));
 app.use("/storage", express.static("storage"));
