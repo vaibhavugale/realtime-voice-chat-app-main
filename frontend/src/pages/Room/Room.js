@@ -18,16 +18,17 @@ const Room = () => {
   }
   const { id: roomID } = useParams();
   const user = useSelector((state) => state.authSlice.user);
-  const { clients, provideRef, provideRefForVideo } = useWebRtc(roomID, user);
+  const { clients, provideRef, provideRefForVideo ,handelMuteUnmute} = useWebRtc(roomID, user);
   const [room,setRoom] = useState({})
-  const [mute,setMute] = useState(false)
+  const [isMute,setIsMute] = useState(true)
   const navigate = useNavigate();
+  useEffect(()=>{
+      handelMuteUnmute(isMute,user.id)
+  },[isMute])
   function handelGoBack() {
     navigate("/rooms");
   }
-  function handelMuteUnmute(){
-    setMute(!mute)
-  }
+ 
   useEffect(()=>{
     
    const fetchRoom = async ()=>{
@@ -38,6 +39,10 @@ const Room = () => {
    }
    fetchRoom();
   },[])
+  const handelMuteBtn = (id)=>{
+    if(id!==user.id) return ;
+    setIsMute(prv =>!prv)
+  }
   // console.log(room)
   // console.log("clients-->", clients);
   return (
@@ -74,9 +79,10 @@ const Room = () => {
                       className={styles.userAvatar}
                       alt="img"
                     />
-                   <button className={styles.mic} onClick={handelMuteUnmute}>
+                   <button className={styles.mic} onClick={()=>handelMuteBtn(client.id)}>
+                   {console.log("client mute",client.muted)}
                     {
-                      mute ? (<BsMicMuteFill size={15} style={muteStyle}/>):(<BsMicFill size={15} style={unmuteStyle}/>)
+                      client.muted ? (<BsMicMuteFill size={15} style={muteStyle}/>):(<BsMicFill size={15} style={unmuteStyle}/>)
                     }
                    </button>
                   {/* <video

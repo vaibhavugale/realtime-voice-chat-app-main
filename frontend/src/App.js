@@ -75,7 +75,7 @@ const GuestRoute = ({ children, user, isAuth }) => {
   const location = useLocation();
   // console.log("Guest");
 
-  console.log(isAuth);
+  // console.log(isAuth);
   return isAuth ? (
     <Navigate to="/rooms" state={{ from: location }} replace />
   ) : (

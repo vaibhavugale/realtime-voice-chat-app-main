@@ -8,16 +8,16 @@ import { setAuth } from "../../../Store/Slices/user-slices";
 import { useDispatch } from "react-redux";
 
 const StepOtp = ({ onNext }) => {
-  const [otp, setOtp] = useState();
+  const [otp, setOtp] = useState("");
   const dispatch = useDispatch();
-  const { phone, hash } = useSelector((state) => state.authSlice.otp);
+  const { email, hash } = useSelector((state) => state.authSlice.otp);
   async function onSubmit() {
     try {
       if (otp) {
-        console.log({ otp: otp, phone: phone, hash: hash });
+        console.log({ otp: otp, email: email, hash: hash });
         const { data } = await verifyOtp({
           otp: otp,
-          phone: phone,
+          email: email,
           hash: hash,
         });
         console.log(data);

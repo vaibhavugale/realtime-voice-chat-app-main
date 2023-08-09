@@ -1,21 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Input from '../../../../components/shared/Input/Input'
 import CardContainer from '../../../../components/shared/card/CardContainer'
 import Button from '../../../../components/shared/Button/Button'
+import { sendOtp } from '../../../../http'
+import { useDispatch } from 'react-redux'
+import { setOtp } from '../../../../Store/Slices/user-slices'
 
 const Email = ({onNext ,title ,logo ,type }) => {
+  const dispatch = useDispatch();
+  const [email,setEmail] = useState("")
+  async function onSubmit() {
+    try {
+      if (email) {
+        const { data } = await sendOtp({ email: `${email}` });
+
+        dispatch(setOtp({ email: data?.email, hash: data?.hash }));
+
+      
+
+        onNext();
+      }else{
+        alert("please insert email number")
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <CardContainer title={title} img={logo}>
     <Input
-      value={''}
-      // onchange={(e) => setPhoneNumber(e.target.value)}
-      type={"telephone"}
-      placeholder={"91701418191"}
+      value={email}
+      onChange={(e) => {
+        e.preventDefault()
+        setEmail(e.target.value)
+      }}
+      type={type}
+      placeholder={title}
     >
-      <img src="/images/icon/IndianEmoji.png" alt="" />
+   
     </Input>
 
-    <Button buttonText={"Next"} onClick={onNext}></Button>
+    <Button buttonText={"Next"} onclick={onSubmit}></Button>
     <p>
       {` By entering your ${type}, you’re agreeing to our Terms of Service and
         Privacy Policy. Thanks!`}

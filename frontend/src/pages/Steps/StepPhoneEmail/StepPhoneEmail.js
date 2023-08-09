@@ -3,33 +3,36 @@ import Phone from "./Phone/Phone";
 import Email from "./Email/Email";
 import style from "./StepPhoneEmail.module.css";
 const phoneEmail = {
-  phone: Phone,
+  // phone: Phone,
   email: Email,
 };
 
 const StepPhoneEmail = ({ onNext }) => {
-  const [type, setType] = useState("phone");
-  const [title, setTitle] = useState("Entre your Phone number");
-  const [logo, setLogo] = useState("/images/icon/TelephoneEmoji.png");
+  const [type, setType] = useState("email");
+  const [title, setTitle] = useState("Entre your Email id");
+  const [logo, setLogo] = useState("/images/icon/emailEmoji.png");
 
   const TypeComponent = phoneEmail[type];
+
   function changeType(e) {
     if (e.currentTarget.value === "phone") {
+      setType("phone")
       setTitle("Entre your Phone  number");
       setLogo("/images/icon/TelephoneEmoji.png");
     } else {
+      setType('email')
       setTitle("Entre your Email id");
       setLogo("/images/icon/emailEmoji.png");
     }
-    setType(e.currentTarget.value);
-    // alert(e.currentTarget.value)
+   
+    
   }
 
   return (
     <div className={`Centre container`}>
       <div>
         <div className={style.buttonWrapper}>
-          <button
+          {/* <button
             className={`${style.buttonIcon} ${
               type == "phone" ? style.active : ""
             }`}
@@ -39,7 +42,7 @@ const StepPhoneEmail = ({ onNext }) => {
             <p>
               <img src="/images/icon/phone.png" alt="icon" />
             </p>
-          </button>
+          </button> */}
           <button
             className={`${style.buttonIcon}  ${
               type == "email" ? style.active : ""

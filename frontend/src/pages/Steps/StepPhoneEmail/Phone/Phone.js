@@ -17,7 +17,7 @@ const Phone = ({ onNext, title, logo, type }) => {
 
         dispatch(setOtp({ phone: data?.phone, hash: data?.hash }));
 
-        console.log(data);
+      
 
         onNext();
       }else{

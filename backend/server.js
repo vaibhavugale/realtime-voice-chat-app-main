@@ -1,5 +1,5 @@
 require("dotenv").config();
-const dbConnect = require("../backend/dataBase-config");
+const dbConnect = require("./dataBase-config");
 const express = require("express");
 const app = express();
 const Routes = require("./routes");
@@ -87,6 +87,26 @@ io.on("connection", (socket) => {
     });
     delete socketUserMapping[socket.id];
   };
+
+  // handel mute unmute
+  socket.on('mute',({roomId,userId})=>{
+    const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
+    clients.forEach((clientId)=>{
+      io.to(clientId).emit('mute',{
+        peerId:socket.id,
+        userId
+      })
+    })
+  })
+  socket.on('unmute',({roomId,userId})=>{
+    const clients = Array.from(io.sockets.adapter.rooms.get(roomId) || []);
+    clients.forEach((clientId)=>{
+      io.to(clientId).emit('unmute',{
+        peerId:socket.id,
+        userId
+      })
+    })
+  })
   // handel leaving the room
   socket.on("leave", leaveRoom);
   socket.on('disconnect',leaveRoom)

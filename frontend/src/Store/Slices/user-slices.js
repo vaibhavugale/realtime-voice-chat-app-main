@@ -4,7 +4,7 @@ const initialState ={
     isAuth:false,
     user:null,
     otp:{
-        phone:'',
+        email:'',
         hash:''
     }
 }
@@ -22,9 +22,9 @@ const initialState ={
             }
         },
         setOtp:(state,action)=>{
-            const {phone,hash} = action.payload;
+            const {email,hash} = action.payload;
          
-            state.otp.phone = phone 
+            state.otp.email = email 
             state.otp.hash = hash 
           
         }

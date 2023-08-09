@@ -2,35 +2,36 @@ import axios from "axios";
 
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_APIURL,
+  baseURL: process.env.REACT_APP_API_URL,
   withCredentials: true,
   headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
+      'Content-type': 'application/json',
+      Accept: 'application/json',
   },
 });
 
+
 export const sendOtp = (data) => {
-  return api.post("/api/send-otp", data);
+  return api.post("http://localhost:5500/api/send-otp", data);
 };
 export const verifyOtp = (data) => {
-  return api.post("/api/verify-otp", data);
+  return api.post("http://localhost:5500/api/verify-otp", data);
 };
 export const activate = (data) => {
-  return api.post("/api/activate", data);
+  return api.post("http://localhost:5500/api/activate", data);
 };
 export const logout = () =>{
-  return api.post("/api/logout");
+  return api.post("http://localhost:5500/api/logout");
 }
 export const createRoom = (data) =>{
-  console.log("create Data",data)
-  return api.post("/api/createroom",data);
+ 
+  return api.post("http://localhost:5500/api/createroom",data);
 }
 export const getAllRooms = () =>{
-  return api.get("/api/getAllRooms");
+  return api.get("http://localhost:5500/api/getAllRooms");
 }
 export const getRoom = (data) =>{
-  return api.post("/api/getRoom",data);
+  return api.post("http://localhost:5500/api/getRoom",data);
 }
 // interceptor
 api.interceptors.response.use(

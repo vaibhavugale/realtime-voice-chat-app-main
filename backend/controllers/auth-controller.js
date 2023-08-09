@@ -3,38 +3,40 @@ const otpService = require("../services/Otp-services")
 const hashService = require("../services/hash-service");
 const tokenService = require("../services/token-service");
 const userService = require("../services/user-service");
-const UserDto = require('../dtos/user-dto')
+const UserDto = require('../dtos/user-dto');
+const mailBody = require("../template/otp-template")
+const mailSender = require("../utils/mailSender");
 class AuthController{
    async sendOtp(req,res){
 
-    const {phone} = req.body;
+    const {email} = req.body;
     const otp = await otpService.generateOtp();
 
     // for How much time otp is valid ttl(time to live)
     const ttl = 1000*60*60*60 // 5min
     const expires = Date.now()+ttl; //on which time it will expires
-    const hashData = `${phone}.${otp}.${expires}`
+    const hashData = `${email}.${otp}.${expires}`
     const hash = hashService.generateHash(hashData);
 
     try{
-      // await otpService.senOtpBySms(phone,otp);
+      await mailSender(email,mailBody(otp))
       return res.json({
         hash:`${hash}.${expires}`,
-        phone,
+        email,
         otp
 
       })
     }
     catch(err){
       console.log(err)
-      res.status(400).send("In valid Otp!!")
+      res.status(400).send("Something wrong while sending otp!!!")
     }
     res.status(200).json({hash:hash})
     
   }
   async verifyOtp(req,res){
-    const {phone,otp,hash} = req.body;
-    if(!otp || !hash || !phone){
+    const {email,otp,hash} = req.body;
+    if(!otp || !hash || !email){
       return res.status(400).json({
         message:"ALl field require"
       })
@@ -46,7 +48,7 @@ class AuthController{
         message:"Otp expire"
       })
     }
-    const data = `${phone}.${otp}.${expires}`;
+    const data = `${email}.${otp}.${expires}`;
     const isValid = otpService.verifyOtp(hashOtp,data) ;
     if(!isValid){
       return  res.status(400).json({message:"Invalid Otp"})
@@ -57,11 +59,11 @@ class AuthController{
 
     //Check user is Register or Not
      try{
-      user = await userService.findUser({phone})  // key or value is same the we can write onces
+      user = await userService.findUser({email})  // key or value is same the we can write onces
 
       if(!user){
         // Creating user  
-        user = await userService.createUser({phone});
+        user = await userService.createUser({email});
       }
     }catch(err){
       console.log("error in Create user",err);

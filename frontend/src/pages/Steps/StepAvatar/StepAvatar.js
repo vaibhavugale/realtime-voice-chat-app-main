@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAvatar } from "../../../Store/Slices/activation-slice";
 import { activate } from "../../../http";
 import { setAuth } from "../../../Store/Slices/user-slices";
+import { toast } from "react-hot-toast";
 const StepAvatar = ({ onNext }) => {
   const { name, avatar } = useSelector((state) => state.activationSlice);
   const [image, setImage] = useState("/images/icon/avatarimage.png");
@@ -26,10 +27,14 @@ const StepAvatar = ({ onNext }) => {
   async function submit() {
    
     try {
-      const { data } = await activate({ name, avatar });
-      if (data.auth) {
-          dispatch(setAuth(data));
+      const result = await activate({ name, avatar });
+      console.log(result)
+      if (result?.data?.auth) {
+          dispatch(setAuth(result?.data));
       
+      }else{
+        
+        toast.error("All field required")
       }
      
   } catch (err) {
