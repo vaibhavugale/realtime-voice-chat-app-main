@@ -8,7 +8,7 @@ const cookiesParser = require("cookie-parser");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: "*",
+    origin:  `${process.env.BASE_URL}`,
     methods: ["GET", "POST"],
   },
 });
@@ -18,7 +18,7 @@ app.use(cookiesParser());
 
 const corsOption = {
   credentials: true,
-  origin: "*",
+  origin: `${process.env.BASE_URL}`,
 };
 app.use(cors(corsOption));
 app.use("/storage", express.static("storage"));
