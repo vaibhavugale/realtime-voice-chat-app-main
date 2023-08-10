@@ -20,7 +20,7 @@ const corsOption = {
   credentials: true,
   origin: [`${process.env.BASE_URL}`],
 };
-app.use(cors(corsOption));
+//app.use(cors(corsOption));
 app.use("/storage", express.static("storage"));
 
 // this middleware convert data request body into json
