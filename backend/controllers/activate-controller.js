@@ -9,16 +9,18 @@ class ActivateController {
 
     if (!name || !avatar) {
       return  res.status(400).json({ message: "All field required",data:""});
+      
     }
-    // Image Base64
+   
+
+    try {
+       // Image Base64
     const buffer = Buffer.from(
       avatar.replace(/^data:image\/(png|jpg|jpeg);base64,/, ""),
       "base64"
     );
     const imagePath = `${Date.now()}-${Math.round(Math.random() * 1e9)}.png`;
     // 32478362874-3242342342343432.png
-
-    try {
       const jimRes = await jimp.read(buffer);
       jimRes
         .resize(150, jimp.AUTO)

@@ -44,7 +44,7 @@ api.interceptors.response.use(
       originalRequest.isRetry = true;
       try {
         const response = await axios.get(
-          "/api/refresh",
+          `${process.env.REACT_APP_API_URL}/api/refresh`,
           {
             withCredentials: true,
           }

@@ -10,7 +10,9 @@ const Email = ({onNext ,title ,logo ,type }) => {
   const dispatch = useDispatch();
   const [email,setEmail] = useState("")
   async function onSubmit() {
+
     try {
+      
       if (email) {
         const { data } = await sendOtp({ email: `${email}` });
 

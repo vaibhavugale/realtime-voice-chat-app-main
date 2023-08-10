@@ -24,7 +24,7 @@ module.exports = async function(req,res,next){
         next();
     }catch(err){
      console.log(err)
-     res.status(401).json({message:'Invalid Token' })
+     res.status(401).json({message:err.message})
     // res.send(accessToken)
     }
  
