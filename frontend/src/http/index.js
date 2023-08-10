@@ -43,6 +43,7 @@ api.interceptors.response.use(
     if (err.response.status == 401 && err.config && !err.config._isRetry) {
       originalRequest.isRetry = true;
       try {
+        console.log(process.env.REACT_APP_API_URL)
         const response = await api.get(
           `${process.env.REACT_APP_API_URL}/api/refresh`,
           {

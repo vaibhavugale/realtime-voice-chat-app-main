@@ -15,12 +15,15 @@ import Room from "./pages/Room/Room";
 function App() {
   const { user, isAuth } = useSelector((state) => state.authSlice);
   // console.log("app.",user,isAuth)
-  const { loading } = useLoadingRefresh();
+  const loading  = useLoadingRefresh();
 
   return loading ? (
     <div>Loading.....</div>
   ) : (
     <div>
+    {
+      console.log("hiii",process.env.REACT_APP_API_URL)
+    }
       <Navigation />
       <Routes>
         <Route
