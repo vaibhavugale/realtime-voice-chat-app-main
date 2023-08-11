@@ -16,7 +16,7 @@ const Input = (props) => {
         placeholder={placeholder}
         className={style.Input}
       /> */}
-      <input type="text"  {...props} className={style.Input} />
+      <input type="email" {...props} className={style.Input} />
       
     </div>
   );

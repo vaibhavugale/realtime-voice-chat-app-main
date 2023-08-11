@@ -5,6 +5,7 @@ import Button from '../../../../components/shared/Button/Button'
 import { sendOtp } from '../../../../http'
 import { useDispatch } from 'react-redux'
 import { setOtp } from '../../../../Store/Slices/user-slices'
+import { toast } from 'react-hot-toast'
 
 const Email = ({onNext ,title ,logo ,type }) => {
   const dispatch = useDispatch();
@@ -12,17 +13,19 @@ const Email = ({onNext ,title ,logo ,type }) => {
   async function onSubmit() {
 
     try {
-      
+     const toastId =  toast.loading("wait")
       if (email) {
         const { data } = await sendOtp({ email: `${email}` });
 
         dispatch(setOtp({ email: data?.email, hash: data?.hash }));
 
       
-
+        toast.success(`Otp Successfully send on ${email}`)
+        toast.dismiss(toastId)
         onNext();
       }else{
-        alert("please insert email number")
+        toast.dismiss(toastId)
+        toast.error("please insert email ")
       }
     } catch (err) {
       console.log(err);
@@ -30,7 +33,8 @@ const Email = ({onNext ,title ,logo ,type }) => {
   }
   return (
     <CardContainer title={title} img={logo}>
-    <Input
+   <form>
+   <Input
       value={email}
       onChange={(e) => {
         e.preventDefault()
@@ -47,6 +51,7 @@ const Email = ({onNext ,title ,logo ,type }) => {
       {` By entering your ${type}, you’re agreeing to our Terms of Service and
         Privacy Policy. Thanks!`}
     </p>
+   </form>
   </CardContainer>
   )
 }
