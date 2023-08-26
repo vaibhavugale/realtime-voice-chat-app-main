@@ -5,6 +5,7 @@ import { HiOutlineLogout } from "react-icons/hi";
 import { logout } from "../../../http";
 import { setAuth } from "../../../Store/Slices/user-slices";
 import { useDispatch, useSelector } from "react-redux";
+import {FaUserAlt} from "react-icons/fa"
 
 const Navigation = () => {
  
@@ -49,7 +50,7 @@ const Navigation = () => {
           <div className={style.rightNav}>
             <h3>{user.name}</h3>
             <Link to={"/"}>
-              <img src={user.avatar} width="40" height="40"  />
+              <FaUserAlt /> 
             </Link>
             <abbr onClick={handelLogout} className={style.logoutButton}>
               <HiOutlineLogout title="Logout" size={30} />

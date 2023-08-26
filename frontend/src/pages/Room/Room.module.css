@@ -30,10 +30,10 @@
     color: rgba(72, 225, 52, 0.792);
 }
 .userAvatar {
-  width: 100%;
-  height: 100%;
+  width: 50px;
+  height: 70px;
   border-radius: 50%;
-  border: 3px solid #ef9b9b;
+  border: 2px solid rgb(71 85 105);
 }
 .goBackBtn {
   background: none;
@@ -74,7 +74,6 @@
 .clientHeader {
   margin-top: 3rem;
   margin-bottom: 3rem;
-
   display: flex;
   justify-content: space-between;
   align-items: center;

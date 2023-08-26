@@ -8,7 +8,7 @@ import Navigation from "./components/shared/navigation/Navigation";
 import Rooms from "./pages/Rooms/Rooms";
 import Authenticate from "./pages/authenticate/Authenticate";
 import Activate from "./pages/Activate/Activate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLoadingRefresh } from "./Hooks/useLoadingRefresh";
 import Room from "./pages/Room/Room";
 

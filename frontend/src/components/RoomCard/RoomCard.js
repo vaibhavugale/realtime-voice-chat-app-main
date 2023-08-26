@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./RoomCard.module.css";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import {FaUserAlt} from "react-icons/fa"
 
 const RoomCard = ({ room }) => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const RoomCard = ({ room }) => {
         <div className={styles.avatarDiv}>
           {room.speakers.map(
             (speaker, index) =>
-              index <= 2 && <img key={speaker?.id} src={speaker?.avatar} />
+              index <= 2 && <FaUserAlt />
           )}
          
         </div>

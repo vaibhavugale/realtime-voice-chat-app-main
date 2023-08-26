@@ -17,23 +17,28 @@ const Email = ({onNext ,title ,logo ,type }) => {
       if (email) {
         const { data } = await sendOtp({ email: `${email}` });
 
-        dispatch(setOtp({ email: data?.email, hash: data?.hash }));
+        if(data){
+          dispatch(setOtp({ email: data?.email, hash: data?.hash }));
 
       
         toast.success(`Otp Successfully send on ${email}`)
         toast.dismiss(toastId)
         onNext();
+        }else{
+          toast.error("something went wrong...")
+        }
       }else{
         toast.dismiss(toastId)
         toast.error("please insert email ")
       }
     } catch (err) {
+   
       console.log(err);
     }
   }
   return (
     <CardContainer title={title} img={logo}>
-   <form>
+
    <Input
       value={email}
       onChange={(e) => {
@@ -51,7 +56,7 @@ const Email = ({onNext ,title ,logo ,type }) => {
       {` By entering your ${type}, you’re agreeing to our Terms of Service and
         Privacy Policy. Thanks!`}
     </p>
-   </form>
+  
   </CardContainer>
   )
 }

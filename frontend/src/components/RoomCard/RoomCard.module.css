@@ -7,7 +7,8 @@
     flex-direction: column;
     justify-content: space-around;
     transition: all 300ms;
-    background-color: #1D1D1D;
+    background-color: #4d4b4b;
+    border: 1px solid rgb(71 85 105);
 }
 .roomCardContainer:hover{
     background-color: #388cdf;

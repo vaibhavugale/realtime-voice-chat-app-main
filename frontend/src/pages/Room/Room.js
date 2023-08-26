@@ -77,23 +77,14 @@ const Room = () => {
                     <img
                       src={client.avatar}
                       className={styles.userAvatar}
-                      alt="img"
+                      alt=""
                     />
                    <button className={styles.mic} onClick={()=>handelMuteBtn(client.id)}>
                    {console.log("client mute",client.muted)}
                     {
-                      client.muted ? (<BsMicMuteFill size={15} style={muteStyle}/>):(<BsMicFill size={15} style={unmuteStyle}/>)
+                      client.muted ? (<BsMicMuteFill size={13} style={muteStyle}/>):(<BsMicFill size={13} style={unmuteStyle}/>)
                     }
                    </button>
-                  {/* <video
-            ref={ (instance) => {
-              provideRefForVideo(instance, client.id);
-              }}
-              controls
-              autoPlay
-             >
-
-            </video> */}
 
                   <h4>{client.name}</h4>
                 </div>
