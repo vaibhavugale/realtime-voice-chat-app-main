@@ -40,7 +40,7 @@ api.interceptors.response.use(
   },
   async (err) => {
     const originalRequest = err.config;
-    if (err.response.status == 401 && err.config && !err.config._isRetry) {
+    if (err.response.status == 402 && err.config && !err.config._isRetry) {
       originalRequest.isRetry = true;
       try {
       
