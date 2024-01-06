@@ -81,12 +81,15 @@ class AuthController{
     res.cookie('refreshToken',refreshToken,{
       maxAge:1000*60*60*24*30,
       httpOnly:true,
+      secure: true,
       
     })
 
     res.cookie('accessToken',accessToken,{
       maxAge:1000*60*60*24*30,
       httpOnly:true,
+      secure: true,
+      
     })
     const userDto = new UserDto(user);
 
@@ -115,13 +118,18 @@ class AuthController{
           message:"Token invalid ..."
         })
       }
-      // check in db
-     try{
-      const result = await tokenService.findRefreshToken(userData._id,refreshTokenFromCookies )
-
-     }catch(er){
-      console.log(er)
-     }
+     
+      try {
+        const token = await tokenService.findRefreshToken(
+            userData._id,
+            refreshTokenFromCookie
+        );
+        if (!token) {
+            return res.status(401).json({ message: 'Invalid token' });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: 'Internal error' });
+    }
      
       const user = await userService.findUser({_id:userData._id})
       if(!user){
