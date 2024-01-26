@@ -122,7 +122,7 @@ class AuthController{
       try {
         const token = await tokenService.findRefreshToken(
             userData._id,
-            refreshTokenFromCookie
+            refreshTokenFromCookies
         );
         if (!token) {
             return res.status(401).json({ message: 'Invalid token' });
@@ -164,7 +164,7 @@ class AuthController{
 
     const userDto = new UserDto(user);
 
-    res.status(200).json({
+    return res.status(200).json({
     user:userDto,
     auth:true
     })

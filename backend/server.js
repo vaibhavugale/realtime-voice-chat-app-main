@@ -6,21 +6,22 @@ const Routes = require("./routes");
 const cors = require("cors");
 const cookiesParser = require("cookie-parser");
 const server = require("http").createServer(app);
+const corsOption = {
+  credentials: true,
+  origin: `*`,
+};
+app.use(cors(corsOption));
 const io = require("socket.io")(server, {
   cors: {
-    origin:  `${process.env.BASE_URL}`,
-    methods: ["GET", "POST"],
+    origin:  "*",
+    methods: ["GET", "POST","PUT","DELETE"],
   },
 });
 console.log(process.env.BASE_URL)
 
 app.use(cookiesParser());
 
-const corsOption = {
-  credentials: true,
-  origin: `${process.env.BASE_URL}`,
-};
-app.use(cors(corsOption));
+
 app.use("/storage", express.static("storage"));
 
 // this middleware convert data request body into json
