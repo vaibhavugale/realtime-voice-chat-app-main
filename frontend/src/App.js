@@ -18,7 +18,7 @@ function App() {
   const loading  = useLoadingRefresh();
 
   return loading ? (
-    <div>Loading.....</div>
+    <div className="Loading">Loading.....</div>
   ) : (
     <div>
     {
