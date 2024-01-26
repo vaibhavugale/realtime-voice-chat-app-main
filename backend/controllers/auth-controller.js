@@ -103,6 +103,12 @@ class AuthController{
     try{
       // get refresh token 
       const {refreshToken: refreshTokenFromCookies} = req.cookies;
+      if(!refreshTokenFromCookies){
+        return res.status(404).json({
+          success:false,
+          message:"Token not found"
+        })
+      }
       
       // verify token     
       let userData;
