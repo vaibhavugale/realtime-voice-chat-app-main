@@ -141,6 +141,8 @@ class AuthController{
     // generate new token
    const{ refreshToken,accessToken}= tokenService.generateToken({_id:userData._id})
     // update refresh token
+
+    
     try{
       await tokenService.updateRefreshToken(userData._id,refreshToken);
 
