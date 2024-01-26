@@ -93,7 +93,7 @@ class AuthController{
     })
     const userDto = new UserDto(user);
 
-    res.status(200).json({
+    return res.status(200).json({
     user:userDto,
     auth:true
     })
